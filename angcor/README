@@ -1,0 +1,16 @@
+C ANGCOR
+C  Written by:  M.N. Harakeh and L.W. Put, Internal report KVI-67
+C               Last modified 25 August 1985.
+c Nov-2000 M.Yosoi   Rev. for IBM-xlf
+c Sept 2009 R.G.T. Zegers Rev. for linux
+
+To run on linux:
+* recompile to code (if necessary adjust the makefile)
+* test the program with input.dat (modified from VMS,originally by J. Enders)
+* the DWUCK/CHUCK/DW81 file should be renamed "fort.2"
+* to run type:
+
+angcor < input.dat > output.dat
+
+* The output.dat file will have the output.
+* output.orig is included as a reference.

@@ -1,0 +1,14 @@
+
+	SUBROUTINE FACTOR(L,M,F)
+	IMPLICIT REAL*8(A-H,O-Z)
+
+C  CALCULATES FACTOR [(L+M)!/(L-M)!]
+
+	F=1.
+	IF(M.EQ.0) RETURN
+	I=L-M
+	J=L+M
+	F=FAC(J)/FAC(I)
+c        write(*,*)'***',FAC(J),FAC(I),J,I
+	RETURN
+	END
