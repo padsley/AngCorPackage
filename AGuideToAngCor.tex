@@ -1,0 +1,112 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+
+\title{A practical guide to using the AngCor package}
+\author{Philip Adsley, iThemba LABS/University of the Witswatersrand\\
+Kevin CW Li, iThemba LABS/University of Stellenbosch\\
+Luna Pellegri, iThemba LABS/University of the Witswatersrand}
+\date{\today}
+
+\pdfinfo{%
+  /Title    (A pratical guide to using the AngCor package)
+  /Author   (Philip Adsley)
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This report contains brief, practically oriented instructions for how to use the various codes contained within the AngCor software package. Most of these codes (everything except the averaging code) have been written by other people. While we (the contributors to this report) may be able to help you with various parts of the codes, we are not experts and some of your queries may be beyond our knowledge.
+
+Should you have queries you can e-mail padsley@gmail.com or (preferably) leave a comment on the Github repository.
+
+This report is a living document and may contain errors, misleading statements or blatent falsehoods. If (when) you find an error please let us know so the guide may be corrected. In addition, if you have any comments, suggestions or corrections, please get in touch so they can be added to the report. If you wish to do so by writing a section of the report and then being added as a co-author, then I encourage you to do just that. Note that the draft version of this report may be found on the Github repository and amended there.
+
+\section{The Physical Problem}
+
+\section{Package Contents}
+
+The package contains the following pieces of code:
+
+\begin{enumerate}
+ \item formf - a code to calculate some monopole and dipole form-factors,
+ \item A modified version of CHUCK3, a code for DWBA calculations,
+ \item AngCor - a code to calculate angular distributions
+ \item AverageAngCorResults - a code to calculate the average (observed) angular distribution given the CHUCK3 and AngCor outputs
+\end{enumerate}
+
+This are introducted code-by-code below.
+
+In addition, there are a number of shell scripts or other codes within the repository which may be used or modified as required in order to run various parts of the codes. These will be introduced in the relevant section. However, there is one example bash script to introduce now. This code is called XXX.sh and it contains the commands to run each part of the whole package step-by-step. It is included for two reasons - first, so you can test to see if the code is working as expected and second, so you may use it as a guide for running the calculations.
+
+\section{Optical-model potentials}
+
+Optical-model potentials are not part of this package. As a hint - if you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald \cite{NMBAlphaPotentials}. Other optical-model potentials are available. The RIPL-3 database \url{https://www-nds.iaea.org/RIPL-3/} is another useful source.
+
+\section{Form Factors}
+
+Form factors for monopole and dipole states can be calculated using the code \it{formf}. For this code, the input required is the $\alpha+$nucleus optical model potential. The outputs are two dipole and two monopole form factors which may be used as inputs for CHUCK3 calculations.
+
+The code can be run with the command \it{formf}. The code will then run line-by-line asking for the optical-model potential to be input piece-by-piece. This is worth doing to get to know how \it{formf} works. However, you can also run \it{formf} by giving an input file in the style \it{formf < input}.
+
+An example input is:
+
+pr - Proceed with the calculation
+140 - Mass of the nucleus
+1 - Type of the Woods-Saxon potential 1 = volume, 2 = surface
+-18.7776 - Depth of the WS potential
+1.57 - Reduced radius for the potential
+0.58815 - Diffusiveness of the potential
+30 - Maximum integration radius
+.1 - Integration step size
+ex - exit the code
+
+It is generally easier to prepare these files beforehand, it is more convinient to use the code in this manner and it's useful to have the old input files available if you're trying to remember what you did some months previously.
+
+
+\section{CHUCK3}
+
+CHUCK3 is a coupled-channel code which can perform DWBA calculations. Its purpose in the current model is twofold. First, it is used to calculate the differential cross section as a function of scattering angle and second, it is used to get the substate distribution which is required for AngCor. To do this, a CHUCK3 input file must be prepared. Be careful - these input files are read in with FORTRAN and are thus sensitive to whitespaces and which column quantities are aligned to. It is therefore often much easier to take an existing file and modify it rather than writing one from scratch.
+
+CHUCK3 is detailed in the instruction manual in the \it{chuck} directory. An annotated input file is given below. However, a brief note about the form factors - the code \it{formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
+
+An example CHUCK3 input is followed by a line-by-line description:
+
+11     23000     1    Ca48  136 MeV      ISGDR Excitation
+100.    0.0    0.15
+150  2  0 -2
+0.1     30.
+136.    4.      2.      48.     20.     1.4
+  1  1
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 
+-7.600  4.      2.      48.     20.     1.4
+  2  2
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 
+ -2  1  1  0  2  3  0  0 0.10
+6.      222.49771.25    0.78            37.569061.570   0.62            1.00
+7.      -967.3841.25    0.78            -247.8991.570   0.62            0.00
+7.      84.911021.25    0.78            18.198681.570   0.62            2.00
+-8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00
+
+
+
+\section{AngCor}
+
+
+
+\section{Averaging the AngCor result}
+
+Generally one 
+
+\section{Acknowledgements and Thanks}
+
+
+
+\end{document}
