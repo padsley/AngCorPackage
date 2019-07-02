@@ -1,0 +1,204 @@
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    24.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -76.6700 MeV
+ RR/(A**1/3) :   1.2450 Fm,   AR :0.8010 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    213.49400
+  FX = 7.0  PWR = 0.0   V =   -715.22968
+  FX = 7.0  PWR = 2.0   V =     79.96030
+  FX = 8.0  PWR = 1.0   V =      6.91215
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =   -106.74700
+  FX = 7.0  PWR = 0.0   V =  -2949.50478
+  FX = 7.0  PWR = 2.0   V =     79.96030
+  FX = 7.0  PWR =-2.0   V =   -345.79092
+  FX = 8.0  PWR =-1.0   V =    431.69903
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    230.01000
+  FX = 7.0  PWR = 1.0   V =     95.71785
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    179.51344
+  FX = 7.0  PWR = 0.0   V =    343.74210
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    24.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -23.1000 MeV
+ RR/(A**1/3) :   1.5700 Fm,   AR :0.5670 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =     51.00842
+  FX = 7.0  PWR = 0.0   V =   -243.63313
+  FX = 7.0  PWR = 2.0   V =     26.98858
+  FX = 8.0  PWR = 1.0   V =      3.29585
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    -25.50421
+  FX = 7.0  PWR = 0.0   V =  -1004.43252
+  FX = 7.0  PWR = 2.0   V =     26.98858
+  FX = 7.0  PWR =-2.0   V =   -116.71301
+  FX = 8.0  PWR =-1.0   V =    205.84305
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     69.30000
+  FX = 7.0  PWR = 1.0   V =     40.74074
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     63.10996
+  FX = 7.0  PWR = 0.0   V =    184.50112
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    26.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -76.0100 MeV
+ RR/(A**1/3) :   1.2450 Fm,   AR :0.8010 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    206.08367
+  FX = 7.0  PWR = 0.0   V =   -709.72608
+  FX = 7.0  PWR = 2.0   V =     77.18490
+  FX = 8.0  PWR = 1.0   V =      6.32552
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =   -103.04184
+  FX = 7.0  PWR = 0.0   V =  -2919.97216
+  FX = 7.0  PWR = 2.0   V =     77.18490
+  FX = 7.0  PWR =-2.0   V =   -352.08395
+  FX = 8.0  PWR =-1.0   V =    439.55549
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    228.03000
+  FX = 7.0  PWR = 1.0   V =     94.89388
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    179.74321
+  FX = 7.0  PWR = 0.0   V =    349.99784
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    26.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -22.9700 MeV
+ RR/(A**1/3) :   1.5700 Fm,   AR :0.5670 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =     49.38597
+  FX = 7.0  PWR = 0.0   V =   -246.05090
+  FX = 7.0  PWR = 2.0   V =     26.13014
+  FX = 8.0  PWR = 1.0   V =      3.02521
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    -24.69298
+  FX = 7.0  PWR = 0.0   V =  -1011.64826
+  FX = 7.0  PWR = 2.0   V =     26.13014
+  FX = 7.0  PWR =-2.0   V =   -119.19434
+  FX = 8.0  PWR =-1.0   V =    210.21930
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     68.91000
+  FX = 7.0  PWR = 1.0   V =     40.51146
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     63.03372
+  FX = 7.0  PWR = 0.0   V =    188.42364
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    28.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -79.4000 MeV
+ RR/(A**1/3) :   1.2450 Fm,   AR :0.8010 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    210.02216
+  FX = 7.0  PWR = 0.0   V =   -742.37050
+  FX = 7.0  PWR = 2.0   V =     78.65999
+  FX = 8.0  PWR = 1.0   V =      6.13566
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =   -105.01108
+  FX = 7.0  PWR = 0.0   V =  -3048.11661
+  FX = 7.0  PWR = 2.0   V =     78.65999
+  FX = 7.0  PWR =-2.0   V =   -376.98513
+  FX = 8.0  PWR =-1.0   V =    470.64311
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    238.20000
+  FX = 7.0  PWR = 1.0   V =     99.12609
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =    189.44460
+  FX = 7.0  PWR = 0.0   V =    374.75149
+  DEPTH RADIUS AND DIFFUSENESS OF THE WOODS-SAXON         OPTICAL MODEL POTENTIAL
+1                 NUCLEUS
+              MASS :    28.0
+
+
+ VOLUME  WOODS-SAXON POTENTIAL PARAMETERS
+ DEPTH V : -22.8400 MeV
+ RR/(A**1/3) :   1.5700 Fm,   AR :0.5670 Fm
+ MAX. INTEG. RADIUS :      30.000   INTEG. STEP :0.100
+
+  Harakeh-Dieperink dipole form factor for DWUCK        or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =     47.90826
+  FX = 7.0  PWR = 0.0   V =   -248.26692
+  FX = 7.0  PWR = 2.0   V =     25.34829
+  FX = 8.0  PWR = 1.0   V =      2.79322
+
+  Orlandini et al. dipole form factor for DWUCK         or CHUCK
+
+  FX = 6.0  PWR = 1.0   V =    -23.95413
+  FX = 7.0  PWR = 0.0   V =  -1018.40777
+  FX = 7.0  PWR = 2.0   V =     25.34829
+  FX = 7.0  PWR =-2.0   V =   -121.48397
+  FX = 8.0  PWR =-1.0   V =    214.25744
+
+  Satchler (Version I) monopole form factor for DWUCK   or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     68.52000
+  FX = 7.0  PWR = 1.0   V =     40.28219
+
+  Satchler (Version II) monopole form factor for DWUCK  or CHUCK
+
+  FX = 6.0  PWR = 0.0   V =     62.92414
+  FX = 7.0  PWR = 0.0   V =    192.04310
