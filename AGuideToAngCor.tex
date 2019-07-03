@@ -2,6 +2,8 @@
 %\documentclass[a4paper,10pt]{scrartcl}
 
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{listings}
 
 \title{A practical guide to using the AngCor package}
 \author{Philip Adsley, iThemba LABS/University of the Witswatersrand\\
@@ -19,6 +21,7 @@ Luna Pellegri, iThemba LABS/University of the Witswatersrand}
 }
 
 \begin{document}
+\lstset{language=bash}
 \maketitle
 
 \section{Introduction}
@@ -42,31 +45,43 @@ The package contains the following pieces of code:
  \item AverageAngCorResults - a code to calculate the average (observed) angular distribution given the CHUCK3 and AngCor outputs
 \end{enumerate}
 
-This are introducted code-by-code below.
+These are introducted code-by-code below.
 
 In addition, there are a number of shell scripts or other codes within the repository which may be used or modified as required in order to run various parts of the codes. These will be introduced in the relevant section. However, there is one example bash script to introduce now. This code is called XXX.sh and it contains the commands to run each part of the whole package step-by-step. It is included for two reasons - first, so you can test to see if the code is working as expected and second, so you may use it as a guide for running the calculations.
 
 \section{Optical-model potentials}
 
-Optical-model potentials are not part of this package. As a hint - if you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald \cite{NMBAlphaPotentials}. Other optical-model potentials are available. The RIPL-3 database \url{https://www-nds.iaea.org/RIPL-3/} is another useful source.
+Optical-model potentials are not part of this package. As a hint - if you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald (Physical Review C 36 1312). Other optical-model potentials are available. The \href{https://www-nds.iaea.org/RIPL-3/}{RIPL-3 database} is another useful source.
 
 \section{Form Factors}
 
-Form factors for monopole and dipole states can be calculated using the code \it{formf}. For this code, the input required is the $\alpha+$nucleus optical model potential. The outputs are two dipole and two monopole form factors which may be used as inputs for CHUCK3 calculations.
+Form factors for monopole and dipole states can be calculated using the code {\it formf}. For this code, the input required is the $\alpha+$nucleus optical model potential. The outputs are two dipole and two monopole form factors which may be used as inputs for CHUCK3 calculations.
 
-The code can be run with the command \it{formf}. The code will then run line-by-line asking for the optical-model potential to be input piece-by-piece. This is worth doing to get to know how \it{formf} works. However, you can also run \it{formf} by giving an input file in the style \it{formf < input}.
+The first step here is to compile the code. To do this, go to the {\it formf} directory. Then go into the {\it cio} directory and do {\it make}. Then go back up one directory (back to the {\it formf} directory) and run {\it make} again.
+
+The code can be run with the command {\it formf}. The code will then run line-by-line asking for the optical-model potential to be input piece-by-piece. This is worth doing to get to know how {\it formf} works. However, one can also run {\it formf} by giving an input file: {\it ./formf $<$ input}.
 
 An example input is:
+\newline
+\noindent pr\\
+140\\
+1\\
+-18.7776\\
+1.57\\
+0.58815\\
+30\\
+.1\\
+ex\\
 
-pr - Proceed with the calculation
-140 - Mass of the nucleus
-1 - Type of the Woods-Saxon potential 1 = volume, 2 = surface
--18.7776 - Depth of the WS potential
-1.57 - Reduced radius for the potential
-0.58815 - Diffusiveness of the potential
-30 - Maximum integration radius
-.1 - Integration step size
-ex - exit the code
+\noindent pr - Proceed with the calculation\\
+140 - Mass of the nucleus\\
+1 - Type of the Woods-Saxon potential 1 = volume, 2 = surface\\
+-18.7776 - Depth of the WS potential\\
+1.57 - Reduced radius for the potential\\
+0.58815 - Diffusiveness of the potential\\
+30 - Maximum integration radius\\
+.1 - Integration step size\\
+ex - exit the code\\
 
 It is generally easier to prepare these files beforehand, it is more convinient to use the code in this manner and it's useful to have the old input files available if you're trying to remember what you did some months previously.
 
@@ -75,35 +90,62 @@ It is generally easier to prepare these files beforehand, it is more convinient 
 
 CHUCK3 is a coupled-channel code which can perform DWBA calculations. Its purpose in the current model is twofold. First, it is used to calculate the differential cross section as a function of scattering angle and second, it is used to get the substate distribution which is required for AngCor. To do this, a CHUCK3 input file must be prepared. Be careful - these input files are read in with FORTRAN and are thus sensitive to whitespaces and which column quantities are aligned to. It is therefore often much easier to take an existing file and modify it rather than writing one from scratch.
 
-CHUCK3 is detailed in the instruction manual in the \it{chuck} directory. An annotated input file is given below. However, a brief note about the form factors - the code \it{formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
+The first step for using CHUCK3 is to compile the code. This should be done by entering the {\it chuck} directory and running the command {\it make}. This should create a {\it chuck} executable.
+
+CHUCK3 is detailed in the instruction manual in the {\it chuck} directory. Note that  An annotated input is given below - however, please do not try to use it to make an input yourself because \LaTeX\ has eaten the formatting. Use the example inputs in {\it chuck/input} as templates. However, a brief note about the form factors - the code {\it formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
 
 An example CHUCK3 input is followed by a line-by-line description:
 
-11     23000     1    Ca48  136 MeV      ISGDR Excitation
-100.    0.0    0.15
-150  2  0 -2
-0.1     30.
-136.    4.      2.      48.     20.     1.4
-  1  1
--1.     -100.7  1.25    0.78            -21.4   1.57    0.62 
--7.600  4.      2.      48.     20.     1.4
-  2  2
--1.     -100.7  1.25    0.78            -21.4   1.57    0.62 
- -2  1  1  0  2  3  0  0 0.10
-6.      222.49771.25    0.78            37.569061.570   0.62            1.00
-7.      -967.3841.25    0.78            -247.8991.570   0.62            0.00
-7.      84.911021.25    0.78            18.198681.570   0.62            2.00
--8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00
+\noindent 11     23000     1    Ca48  136 MeV      ISGDR Excitation\\
+100.    0.0    0.15\\
+150  2  0 -2\\
+0.1     30.\\
+136.    4.      2.      48.     20.     1.4\\
+  1  1\\
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 \\
+-7.600  4.      2.      48.     20.     1.4\\
+  2  2\\
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 \\
+ -2  1  1  0  2  3  0  0 0.10\\
+6.      222.49771.25    0.78            37.569061.570   0.62            1.00\\
+7.      -967.3841.25    0.78            -247.8991.570   0.62            0.00\\
+7.      84.911021.25    0.78            18.198681.570   0.62            2.00\\
+-8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00\\
 
+\noindent 11     23000     1    Ca48  136 MeV      ISGDR Excitation <- Options and title for the file\\
+100.    0.0    0.15\\
+150  2  0 -2\\
+0.1     30.\\
+136.    4.      2.      48.     20.     1.4\\
+  1  1\\
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 \\
+-7.600  4.      2.      48.     20.     1.4\\
+  2  2\\
+-1.     -100.7  1.25    0.78            -21.4   1.57    0.62 \\
+ -2  1  1  0  2  3  0  0 0.10\\
+6.      222.49771.25    0.78            37.569061.570   0.62            1.00\\
+7.      -967.3841.25    0.78            -247.8991.570   0.62            0.00\\
+7.      84.911021.25    0.78            18.198681.570   0.62            2.00\\
+-8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00\\
 
+To run {\it CHUCK3}, one should do {\it ./chuck $<$ input $>$ output}. The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the {\it fort.2} file, containing the population of the substates for the scattering at a particular angle.
 
 \section{AngCor}
 
+AngCor calculates the angular correlation function as a function of the polar decay angle ($\theta_{\mathrm{decay}}$) for a reaction involving the scattering of the ejectile at a particular polar scattering angle ($\theta_{\alpha}$ - note that this does not have to be an $\alpha$ particle - it is just a quirk of the naming convention as this code was originally written for use with $\alpha$-particle inelastic scattering reactions with the K600) and azimuthal decay angle ($\phi_{\mathrm{decay}}$).
 
+The first step in using AngCor is to compile the code. This should be done by running {\it make} in the {\it angcor} directory. This should create some object (.o) files and an {\it angcor} executable.
 
 \section{Averaging the AngCor result}
 
-Generally one 
+A working ROOT distribution is a prerequisite for using this code. If you don't have ROOT installed and working yet then you need to do that now.
+
+In many cases, the scattering reactions relevant for the current work use finite-acceptance magnetic spectrometers. This means that there is a range of angles which can be populated in the reaction. Especially in the $0-2$ degree range for the K600 aperture, this can result in a range of recoil angles over tens of degrees for the recoil. Therefore, the results of the AngCor calculations need to be smeared over the finite aperture size of the spectrometer.
+
+In order to run this code, you need to compile the code. To do this, one needs to run the command:\\
+\lstinline!g++ AverageAngCorResults.cpp -o AverageAngCorResults `root-config --cflags --libs` -O3!. Once this has been done, the code may be run with the command \lstinline!./AverageAngCorResults!. However, the code when it runs requires three arguments. You can find these out but running \lstinline!./AverageAngCorResults! with no arguments which will return the output\\ \lstinline!usage: mcerr <filename for cross section> <filename for AngCor results> <filename for output>!. The file for the cross section will be the file which was created in the command \lstinline!./chuck3 < input > output!. The file for the AngCor results is the combined file created when running the \lstinline!make_final.sh! shell script.
+ 
+To get the angular correlation function in the centre-of-mass frame of the colliding system one can use the {\it TTree} which was output in the ROOT file. In order to plot the ACF, one should run a command of the form:\\ \lstinline!AngCorData->Draw("ThetaDecayCM>>hW(181,0,180)","Weight*(CUTS)","")!. This will weight the $\theta_{\mathrm{decay}}$ distribution with the correct weight which is derived from the information on the differential cross section from CHUCK3 and the angular correlation functions from AngCor.
 
 \section{Acknowledgements and Thanks}
 
