@@ -34,6 +34,8 @@ This report is a living document and may contain errors, misleading statements o
 
 \section{The Physical Problem}
 
+Angular correlations in nuclear reactions are an important tool in helping to assign spins and parities to states, and in properly computing branching ratios for excited states in nuclei. The angular correlations typically depend 
+
 \section{Package Contents}
 
 The package contains the following pieces of code:
@@ -43,6 +45,7 @@ The package contains the following pieces of code:
  \item A modified version of CHUCK3, a code for DWBA calculations,
  \item AngCor - a code to calculate angular distributions
  \item AverageAngCorResults - a code to calculate the average (observed) angular distribution given the CHUCK3 and AngCor outputs
+ \item TestCalculation.sh - this codep
 \end{enumerate}
 
 These are introducted code-by-code below.
@@ -129,6 +132,9 @@ An example CHUCK3 input is followed by a line-by-line description:
 -8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00\\
 
 To run {\it CHUCK3}, one should do {\it ./chuck $<$ input $>$ output}. The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the {\it fort.2} file, containing the population of the substates for the scattering at a particular angle.
+
+One particular odd behaviour with CHUCK3 that has been observed is that some calculations will not run unless you have a two blank line (i.e. carriage returns) at the end of the input file. The reason for this is not entirely understood but if you can see that the outputs are all being read correctly before an error that looks like:\\ \lstinline!At line 287 of file chuck.for (unit = 5, file = 'stdin')!\\ \lstinline!Fortran runtime error: End of file!
+Then consider adding a couple of additional lines to the end of the code and trying again.
 
 \section{AngCor}
 
