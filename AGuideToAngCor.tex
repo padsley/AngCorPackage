@@ -2,8 +2,18 @@
 %\documentclass[a4paper,10pt]{scrartcl}
 
 \usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 \usepackage{hyperref}
+\usepackage{xcolor}
 \usepackage{listings}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
 
 \title{A practical guide to using the AngCor package}
 \author{Philip Adsley, iThemba LABS/University of the Witswatersrand\\
@@ -34,7 +44,7 @@ This report is a {\it living document} and may contain errors, misleading statem
 
 Of particular interest would be other sources of optical-model potentials (if you are the owner of a code to calculate optical-model potentials and would be willing to allow your code to be included within this package then please contact Philip).
 
-A final note of warning - we have used this code for various scenarios for experiments based at iThemba LABS using the K600 magnetic spectrometer and her ancillary detectors. 
+A final note of warning - we have used this code for various scenarios for experiments based at iThemba LABS using the K600 magnetic spectrometer and her ancillary detectors. If you are trying to use this code with some other experimental setup at some other place you may have to make some adjustments to the inputs or the averaging code. If you are doing this and you need help, advice or emotional support, please get in touch and we will do what we can to help.
 
 \section{The Physical Problem}
 
@@ -43,6 +53,10 @@ Angular correlations in nuclear reactions are an important tool in helping to as
 To calculate the form of the decay, typically we need to have the initial spin substate (m-state) distribution. This depends on the reaction and, in the present case, comes from the CHUCK3 code. Once the initial m-state distribution is known they can be used along with the appropriate decay amplitudes for the reaction of interest to calculate the angular correlations. This is done with the AngCor code.
 
 Finally, in many cases that are investigated with the K600, reactions performed at very forward angles including 0 degrees are used. These reactions typically result in recoil angles which range over large angles. This smearing of the angular correlation function must be properly accounted for. This is done with the averaging portion of the code. This code averages the angcor outputs over the reaction region of interest, weights correctly according to the differential cross section of the initial reaction and produces an averaged, observed angular correlation function.
+
+Recent experimental studies which have used angular correlations of the type described within this work are studies of the PDR using the K600 and BAGEL, an array of HPGe; studies of nuclear clustering in light nuclei such as $^{16}$O \cite{dummy} and $^{24}$Mg \cite{dummy} using the K600 and CAKE, an array of silicon detectors \cite{dummy}; studies of $\gamma$-ray transitions within the candidate superdeformed band in $^{28}$Si using the Grand Raiden magnetic spectrometer and CAGRA \cite{dummy}.
+
+If you use this software package to calculate angular correlations, please let us know so we can add a reference to the paper in the above list. In addition, if you are willing, please send us the input files that you have used for your calculations - having reference calculations that other scientists are able to use is useful.
 
 \section{Package Contents}
 
@@ -60,6 +74,11 @@ These are introducted code-by-code below.
 
 In addition, there are a number of shell scripts or other codes within the repository which may be used or modified as required in order to run various parts of the codes. These will be introduced in the relevant section. However, there is one example bash script to introduce now. This code is called XXX.sh and it contains the commands to run each part of the whole package step-by-step. It is included for two reasons - first, so you can test to see if the code is working as expected and second, so you may use it as a guide for running the calculations.
 
+To install the code, one must run the command:\\
+\framebox{git clone --recurse-submodules \url{https://github.com/padsley/AngCorPackage.git}}
+
+which should create a sub-directory called \textquoteleft AngCorPackage\textquoteright inside the directory where you run that command. Inside this new directory are some further subdirectories.
+
 \section{Optical-model potentials}
 
 Optical-model potentials are not part of this package. As a hint - if you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald (Physical Review C 36 1312). Other optical-model potentials are available. The \href{https://www-nds.iaea.org/RIPL-3/}{RIPL-3 database} is another useful source.
@@ -68,11 +87,11 @@ Optical-model potentials are not part of this package. As a hint - if you are lo
 
 This code to calculate form factors, formf, was written by M. Harakeh. Details about authorship and the origins of the various form factors may be found in formf.for. The form factors calculated are those of Harakeh and Dieperink \cite{dummy}, Orlandini et al. \cite{dummy} and Satchler \cite{dummy}.
 
-Form factors for monopole and dipole states can be calculated using the code {\it formf}. For this code, the input required is the $\alpha+$nucleus optical model potential. The outputs are form factors which may be used as inputs for CHUCK3 calculations.
+Form factors for monopole and dipole states can be calculated using the code \framebox{formf}. For this code, the input required is the $\alpha+$nucleus optical model potential. The outputs are form factors which may be used as inputs for CHUCK3 calculations.
 
-The first step here is to compile the code. To do this, go to the {\it formf} directory. Then go into the {\it cio} directory and do {\it make}. Then go back up one directory (back to the {\it formf} directory) and run {\it make} again.
+The first step here is to compile the code. To do this, go to the \framebox{formf} directory. Then go into the \framebox{cio} directory and run the comment \framebox{make}. Then go back up one directory (back to the \framebox{formf} directory) and run \framebox{make} again.
 
-The code can be run with the command {\it formf}. The code will then run line-by-line asking for the optical-model potential to be input piece-by-piece. This is worth doing to get to know how {\it formf} works. However, one can also run {\it formf} by giving an input file: {\it ./formf $<$ input}.
+The code can be run with the command \framebox{formf}. The code will then run line-by-line asking for the optical-model potential to be input piece-by-piece. This is worth doing to get to know how \framebox{formf} works. However, one can also run \framebox{formf} by giving an input file: \framebox{./formf $<$ input}.
 
 An example input is:
 \newline
@@ -86,6 +105,9 @@ An example input is:
 .1\\
 ex\\
 
+An approximate translation of that input is:
+\newline
+
 \noindent pr - Proceed with the calculation\\
 140 - Mass of the nucleus\\
 1 - Type of the Woods-Saxon potential 1 = volume, 2 = surface\\
@@ -96,7 +118,7 @@ ex\\
 .1 - Integration step size\\
 ex - exit the code\\
 
-It is generally easier to prepare these files beforehand, it is more convinient to use the code in this manner and it's useful to have the old input files available if you're trying to remember what you did some months previously.
+It is generally easier to prepare these files beforehand: it is more convinient to use the code in this manner and it's useful to have the old input files available if you're trying to remember what you did some months previously.
 
 
 \section{CHUCK3}
@@ -105,11 +127,11 @@ CHUCK3 is a coupled-channel direct reaction written by Peter Kunz and modified b
 
 CHUCK3 is a coupled-channel code which can perform DWBA calculations. Its purpose in the current model is twofold. First, it is used to calculate the differential cross section as a function of scattering angle and second, it is used to get the substate distribution which is required for AngCor. To do this, a CHUCK3 input file must be prepared. Be careful - these input files are read in with FORTRAN and are thus sensitive to whitespaces and which column quantities are aligned to. It is therefore often much easier to take an existing file and modify it rather than writing one from scratch.
 
-The first step for using CHUCK3 is to compile the code. This should be done by entering the {\it chuck} directory and running the command {\it make}. This should create a {\it chuck} executable.
+The first step for using CHUCK3 is to compile the code. This should be done by entering the \framebox{chuck} directory and running the command \framebox{make}. This should create a \framebox{ chuck} executable.
 
-CHUCK3 is detailed in the instruction manual in the {\it chuck} directory. Note that the version of CHUCK3 in the present case is a modified version of the CHUCK3 code and differs from Kunz's original CHUCK3.
+CHUCK3 is detailed in the instruction manual in the \framebox{ chuck} directory. Note that the version of CHUCK3 in the present case is a modified version of the CHUCK3 code and differs from Kunz's original CHUCK3.
 
-An annotated input is given below - however, please do not try to use it to make an input yourself because \LaTeX\ has likely modified the formatting enough that this will not work. Instead, use the example inputs in {\it chuck/input} as templates. However, a brief note about the form factors - the code {\it formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
+An annotated input is given below - however, please do not try to use it to make an input yourself because \LaTeX\ has likely modified the formatting enough that this will not work. Instead, use the example inputs in \framebox{ chuck/input} as templates. However, a brief note about the form factors - the code \framebox{formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
 
 An example CHUCK3 input is followed by a line-by-line description:
 
@@ -145,9 +167,9 @@ An example CHUCK3 input is followed by a line-by-line description:
 7.      84.911021.25    0.78            18.198681.570   0.62            2.00 - Third part of the form factor definition. This is a surface form factor with an $r^2$ component.\\
 -8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00 - Fourth and final (the 8 which defines the type of the form factor is negative) part of the form factor definition. This is a second-order form factor with an additional $r$ factor.\\
 
-To run {\it CHUCK3}, one should do {\it ./chuck $<$ input} to print the output to the screen or {\it ./chuck $<$ input $>$ output} to print the output to a file (called output). The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the {\it fort.2} file, containing the population of the substates for the scattering at a particular angle.
+To run \framebox{CHUCK3}, one should do \framebox{./chuck $<$ input} to print the output to the screen or \framebox{./chuck $<$ input $>$ output} to print the output to a file (called output). The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the \framebox{fort.2} file, containing the population of the substates for the scattering at a particular angle.
 
-One particular odd behaviour with CHUCK3 that has been observed is that some calculations will not run unless you have a two blank line (i.e. carriage returns) at the end of the input file. The reason for this is not entirely understood but if you can see that the outputs are all being read correctly before an error that looks like:\\ \lstinline!At line 287 of file chuck.for (unit = 5, file = 'stdin')!\\ \lstinline!Fortran runtime error: End of file!
+One particular odd behaviour with CHUCK3 that has been observed is that some calculations will not run unless you have a two blank line (i.e. carriage returns) at the end of the input file. The reason for this is not entirely understood but if you can see that the outputs are all being read correctly before an error that looks like:\\ \framebox{At line 287 of file chuck.for (unit = 5, file = 'stdin')}\\ \framebox{Fortran runtime error: End of file}
 Then consider adding a couple of additional lines to the end of the code and trying again. Alternativly, one can try using ICON(1)=9 for the next line which, in theory, should terminate the calculation at the end of the one being performed.
 
 \section{AngCor}
@@ -156,11 +178,11 @@ AngCor was written by MN Harakeh and LW Put, with modifications made by M Yosoi 
 
 AngCor calculates the angular correlation function as a function of the polar decay angle ($\theta_{\mathrm{decay}}$) for a reaction involving the scattering of the ejectile at a particular polar scattering angle ($\theta_{\alpha}$ - note that this does not have to be an $\alpha$ particle - it is just a quirk of the naming convention as this code was originally written for use with $\alpha$-particle inelastic scattering reactions with the K600) and azimuthal decay angle ($\phi_{\mathrm{decay}}$).
 
-The first step in using AngCor is to compile the code. This should be done by running {\it make} in the {\it angcor} directory. This should create some object (.o) files and an {\it angcor} executable.
+The first step in using AngCor is to compile the code. This should be done by running \framebox{make} in the \framebox{angcor} directory. This should create some object (.o) files and an \framebox{angcor} executable.
 
 Once this has been done, the angcor calculations may be run. An example input file is given below, followed by an annotated discussion of the input. Note that because angcor must be run for a large number of cases corresponding to various scattering and $\phi_\mathrm{decay}$ angles, some c files for generating the inputs as well as shell scripts for running all of the generated inputs and an awk script for combining the outputs into one large file.
 
-
+Note that the \framebox{sort.awk} file which does the combination of the various runs is an inflexible tool. It uses substrings to search for the relevant angles ($\theta_\alpha$ and $\phi_\mathrm{decay}$) for each of the different inputs. Therefore, if you change the number of characters in the names of the output files then you will need to change the size and starting character for the substrings in \framebox{sort.awk}.
 
 \section{Averaging the AngCor result}
 
@@ -175,12 +197,14 @@ In order to run this code, you need to first modify the code and then to compile
 If some of these values are set incorrectly then it is very possible that either your answer will be incorrect or alternatively that the code will crash because you will go beyond the end of an array while trying to store the cross section data (for example).
 
 To compile, one needs to run the command:\\
-\lstinline!g++ AverageAngCorResults.cpp -o AverageAngCorResults `root-config --cflags --libs` -O3!. Once this has been done, the code may be run with the command \lstinline!./AverageAngCorResults!. However, the code when it runs requires three arguments. You can find these out by running \lstinline!./AverageAngCorResults! with no arguments which will return the output\\ \lstinline!usage: mcerr <filename for cross section> <filename for AngCor results> <filename for output>!. The file for the cross section will be the file which was created in the command \lstinline!./chuck3 < input > output!. The file for the AngCor results is the combined file created when running the \lstinline!make_final.sh! shell script.
+\framebox{\parbox{\textwidth}{g++ AverageAngCorResults.cpp -o AverageAngCorResults \textasciigrave root-config --cflags --libs\textasciigrave -O3}}. Once this has been done, the code may be run with the command\\ \framebox{./AverageAngCorResults}. However, the code when it runs requires three arguments. You can find these out by running \framebox{./AverageAngCorResults} with no arguments which will return the output\\ \framebox{\parbox{\textwidth}{usage: mcerr $<$filename for cross section$>$ $<$filename for AngCor results$>$ $<$filename for output$>$}}. The file for the cross section will be the file which was created in the command \framebox{./chuck3 $<$ input $>$ output}. For the AngCor results use the combined file created when running the \framebox{make\_final.sh} shell script.
  
-To get the angular correlation function in the centre-of-mass frame of the colliding system one can use the {\it TTree} which was output in the ROOT file. In order to plot the ACF, one should run a command of the form:\\ \lstinline!AngCorData->Draw("ThetaDecayCM>>hW(181,0,180)","Weight*(CUTS)","")!. This will weight the $\theta_{\mathrm{decay}}$ distribution with the correct weight which is derived from the information on the differential cross section from CHUCK3 and the angular correlation functions from AngCor. An example (GenerateOutputAngularCorrelation.cpp) of how to do this is given in the directory 
+To get the angular correlation function in the centre-of-mass frame of the colliding system one can use the \framebox{TTree} which was output in the ROOT file. In order to plot the ACF, one should run a command of the form:\\ \framebox{\parbox{\textwidth}{AngCorData-$>$Draw(``ThetaDecayCM$>>$hW(181,0,180)'',``Weight*(CUTS)'')}}. This will weight the $\theta_{\mathrm{decay}}$ distribution with the correct weight which is derived from the information on the differential cross section from CHUCK3 and the angular correlation functions from AngCor. An example (GenerateOutputAngularCorrelation.cpp) of how to do this is given in the \framebox{AverageAngCorResults} directory.
+
+Note that, at the moment the code does {\it \bf not} provide information on the lab angles of the decaying particles. The calculation of this value is a work in progress and will be added to the final code when available.
 
 \section{Acknowledgements and Thanks}
 
-None of this work would have been possible without Muhsin Harakeh, both for providing the codes in the first place and for allowing us to put them online.
+None of this work would have been possible without Muhsin Harakeh, both for providing the codes in the first place and for allowing us to put them online. Any mistakes found in this brief guide are solely the responsibility of the authors of this guide.
 
 \end{document}

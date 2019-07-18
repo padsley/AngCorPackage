@@ -1,0 +1,58 @@
+OBJS= angcor.o fcnang.o angcorm.o plm.o parcor.o parp.o pardec.o c.o \
+factor.o rhomm.o gamcor.o sigma.o uk.o rk.o rhokq.o rholsj.o fiscor.o djmk.o \
+plot.o
+#OBJS=mnhlib.o angcor.o fcnang.o angcorm.o plm.o parcor.o parp.o pardec.o c.o \
+#factor.o rhomm.o gamcor.o sigma.o uk.o rk.o rhokq.o rholsj.o fiscor.o djmk.o \
+#plot.o
+#FFLAGS=  f77 -c -O3
+FFLAGS=  xlf -bnoquiet -c -O3
+
+mnhlib.o: mnhlib.for
+	$(FFLAGS) mnhlib.for
+angcor.o: angcor.for
+	$(FFLAGS)  angcor.for
+fcnang.o:fcnang.for
+	$(FFLAGS) fcnang.for
+angcorm.o:angcorm.for ANGCOR.INC
+	$(FFLAGS) angcorm.for
+plm.o:plm.for ANGCOR.INC
+	$(FFLAGS) plm.for
+parcor.o:parcor.for ANGCOR.INC
+	$(FFLAGS) parcor.for
+parp.o:parp.for ANGCOR.INC
+	$(FFLAGS) parp.for
+pardec.o:pardec.for
+	$(FFLAGS) pardec.for
+c.o:c.for
+	$(FFLAGS) c.for
+factor.o:factor.for
+	$(FFLAGS) factor.for
+rhomm.o:rhomm.for
+	$(FFLAGS) rhomm.for
+gamcor.o:gamcor.for
+	$(FFLAGS) gamcor.for
+sigma.o:sigma.for
+	$(FFLAGS) sigma.for
+uk.o:uk.for
+	$(FFLAGS) uk.for 
+rk.o:rk.for
+	$(FFLAGS) rk.for
+rhokq.o:rhokq.for
+	$(FFLAGS) rhokq.for
+rholsj.o:rholsj.for
+	$(FFLAGS) rholsj.for
+fiscor.o:fiscor.for
+	$(FFLAGS) fiscor.for
+djmk.o:djmk.for
+	$(FFLAGS) djmk.for
+plot.o:plot.for
+	$(FFLAGS) plot.for
+angcor: $(OBJS)
+	f77 $(OBJS) -o /home/yosoi/bin/angcor
+
+
+
+
+
+
+
