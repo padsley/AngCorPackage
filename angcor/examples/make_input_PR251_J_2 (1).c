@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+  float w=0.0;
+
+  if(argc!=2)
+    {
+        fprintf(stderr, "usage: mcerr <path for where to create files>\n");
+        exit(1);   
+    }
+  
+	for(int i=0;i<41;i++)
+	{
+		for(int j=0;j<181;j++)
+		{
+			w=i/10.;
+ 			//printf("%.1f %d \n",w,j);
+
+			FILE *f;
+			char filename[200];
+			sprintf(filename, "%s/input_PR251_J_2_%.1f_%d.com",argv[1],w,j);
+			f = fopen(filename, "w");
+		
+			if(!f) {
+				fprintf(stderr, "cannot open ...\n");
+		
+			}
+			fprintf(f,"2+ - state of 154Sm, Ex=6.000 MeV\n");
+			fprintf(f,"0,0,0,0,1,0,1,0,0,1,0,\n");
+			fprintf(f,"150,0,0,0,4,0,1,\n");
+			fprintf(f,"1,2,4,\n");
+			fprintf(f,"2,0,0,\n");
+            fprintf(f,"0.98885,0.963146,0.92366,\n");
+			fprintf(f, "%.1f,%d.,0.,0.,0.,\n", w,j);
+			fprintf(f,"0.,0.,0.,0.,\n");
+			fprintf(f,"1,181,");
+
+			fclose(f);
+
+		}
+	}
+
+
+}
