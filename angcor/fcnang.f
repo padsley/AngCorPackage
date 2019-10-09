@@ -15,6 +15,8 @@ c	END
 
 	INDANG = 0
 
+C	WRITE(*,*)"fcnang"
+	
 	GO TO (10,20,30,40,50), IFLAG
 
 C	IFLAG=1	Initialize.

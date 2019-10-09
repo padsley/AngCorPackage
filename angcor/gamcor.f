@@ -40,11 +40,11 @@ c Nov-2000 M.Yosoi   Rev. for IBM-xlf
 	DO 2 K= 2, KM, 2
 	XK = FLOAT(K)
 	IF(ICO(1).EQ.0) THEN
-	  RR(1,K) = RK(XLBC   ,XLBC   ,XJB(1),XJC,XK)
-	  RR(2,K) = RK(XLBC   ,XLBC+1.,XJB(1),XJC,XK)
-	  RR(3,K) = RK(XLBC+1.,XLBC+1.,XJB(1),XJC,XK)
-	  IF(NC.EQ.1) GO TO 2
-	  GO TO 3
+	   RR(1,K) = RK(XLBC   ,XLBC   ,XJB(1),XJC,XK)
+	   RR(2,K) = RK(XLBC   ,XLBC+1.,XJB(1),XJC,XK)
+	   RR(3,K) = RK(XLBC+1.,XLBC+1.,XJB(1),XJC,XK)
+	   IF(NC.EQ.1) GO TO 2
+	   GO TO 3
 	ELSE
 	  DO 4 J=1,NLDEC(1)
 	  UKB(J,K/2)=UK(XK,XJB(1),XJC,DFLOAT(JDEC(1,J))/2.)
@@ -93,7 +93,7 @@ c Nov-2000 M.Yosoi   Rev. for IBM-xlf
 	ENDIF
 	DO 6 K=2,KM,2
 	IF(ICO(1).EQ.0) THEN
-	  RKK(K/2)=(RR(1,K) + 2.0*DEL*RR(2,K) + D2*RR(3,K)) / (1.+D2)
+	   RKK(K/2)=(RR(1,K) + 2.0*DEL*RR(2,K) + D2*RR(3,K)) / (1.+D2)
 	  IF(NC.EQ.1) GO TO 7
 	  UBC =(UKB(1,K/2) + D2 * UKB(2,K/2))/( 1. + D2 )
 	ELSE
@@ -111,7 +111,7 @@ c Nov-2000 M.Yosoi   Rev. for IBM-xlf
 	UCD =  (UKC1(K/2) + D2C * UKC2(K/2)) / (1. + D2C)
 	RKK(K/2)=UBC*UCD*(RRD(1,K)+2.0*DELD*RRD(2,K)+D2D*RRD(3,K))/
      1  (1.+D2D)
-7	CONTINUE
+ 7	CONTINUE
 6	CONTINUE
 	IF (N1 .LE. 0 ) GO TO 9
 	DO 10 I=1,N1

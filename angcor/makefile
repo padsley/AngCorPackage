@@ -4,7 +4,7 @@ plot.o
 #FFLAGS=  xlf -bnoquiet -qfixed=80 -c -O2 
 #FFLAGS=  xlf -c -O2 
 #FFLAGS= f77 -c
-FFLAGS= gfortran -std=legacy -c
+FFLAGS= gfortran -c
 
 all: angcor
 

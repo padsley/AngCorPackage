@@ -200,7 +200,6 @@ C--
      1 (2*I1,I1)*BINOM(JM1,I1)*BINOM(JM2,I1)/BINOM(J3+2*I1,2*I1)*
      2 BINOM((J1+J2-J3)/2,I1)*BINOM(J3+2*I1,(J3+J1-J2)/2+I1)
 10	S=S+PAR(I1)*T
-
 	J123=(J1+J2+J3)/2
 	T=BINOM(J123,J3)/(BINOM(J123,J1)*BINOM(J123,J2)*(J123+1))
 	T=SQRT(T)/SQRT(BINOM(J1,(J1+M1)/2)*BINOM(J2,JM2)*BINOM
@@ -216,8 +215,15 @@ C TITLE: BINOM
 C FACILITY: ALLJ, RADME, TRAMP
 C AUTHOR: M.HARAKEH, KVI, GRONINGEN, NL.
 C--
-
+        
 	DIMENSION BN(50,25)
+! 	Initialise the array to zero to prevent problems later on
+!       Phil Adsley - October 9 2019
+	DO 30 I=1,50
+            DO 40 J=1,25
+                BN(I,J) = 0
+40      CONTINUE
+30      CONTINUE
 
 	BINOM = 1.D0
 	IF (N.EQ.0 .OR. N.EQ.M .OR. M.EQ.0) RETURN
@@ -227,7 +233,7 @@ C--
 	ELSE
 	  I = N - M
 	ENDIF
-
+	
 	IF (N.GT.50) THEN
 	  J=N-I
 	  AI=0.D0
@@ -357,7 +363,6 @@ C TITLE: PAR
 C FACILITY: RADME, ALLJ, TRAMP
 C AUTHOR: M.HARAKEH, KVI, GRONINGEN, NL.
 C--
-
 	I=N/2
 	I=2*I
 	IF (I.EQ.N) THEN
