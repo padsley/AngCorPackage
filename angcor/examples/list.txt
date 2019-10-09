@@ -1,0 +1,8 @@
+This directory contains some example AngCor inputs or input-generation codes. These exist for testing purposes - you can try running them on your machine to check that you get consistent results.
+
+The output files of the tests are also saved in this directory - try to avoid overwriting them!
+
+run ../angor < input > output
+diff -y test_output output
+
+This will first run the AngCor output file and then will print out the two AngCor output files next to each other so you can check for consistency.

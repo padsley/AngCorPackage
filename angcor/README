@@ -5,7 +5,7 @@ c Nov-2000 M.Yosoi   Rev. for IBM-xlf
 c Sept 2009 R.G.T. Zegers Rev. for linux
 
 To run on linux:
-* recompile to code (if necessary adjust the makefile)
+* recompile the code (if necessary adjust the makefile)
 * test the program with input.dat (modified from VMS,originally by J. Enders)
 * the DWUCK/CHUCK/DW81 file should be renamed "fort.2"
 * to run type:
@@ -14,3 +14,5 @@ angcor < input.dat > output.dat
 
 * The output.dat file will have the output.
 * output.orig is included as a reference.
+
+WARNING - AT THE CURRENT TIME THE BEHAVIOUR ON UBUNTU SYSTEMS (AT LEAST) IS ODD - RESULTS CANNOT BE TRUSTED ON UBUNTU SYSTEMS!
