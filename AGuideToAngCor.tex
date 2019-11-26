@@ -43,11 +43,11 @@ Luna Pellegri, iThemba LABS/University of the Witswatersrand}
 
 This report contains brief, practically oriented instructions for how to use the various codes contained within the AngCor software package. Most of these codes (everything except the averaging code) have been written by other people. While we (the contributors to this report) may be able to assist users with various parts of the codes, we did not write those codes and so some queries may be beyond our knowledge.
 
-Should you have queries you can e-mail padsley@gmail.com or (preferably) leave a comment on the \href{https://github.com/padsley/AngCorPackage}{Github repository}.
+Should you have queries you can e-mail padsley@gmail.com or (preferably) make an issue on the \href{https://github.com/padsley/AngCorPackage}{Github repository}.
 
-This guide is a {\it living document} and may contain errors, misleading statements or blatent falsehoods. If (when) you find an error please let us know so the guide may be corrected. In addition, if you have any comments, suggestions or corrections, please get in touch so they can be added to the report or (preferably) add them directly on the guide on the Github repository (and please add yourself as an author of the report). The draft version of this report may be found on the Github repository and amended there - please inform Philip of any changes once you are happy with them and the arXiv version of the paper will be updated.
+This guide is a {\it living document} and may contain errors, misleading statements or blatent falsehoods. If you find an error please let us know so the guide may be corrected. In addition, if you have any comments, suggestions or corrections, please get in touch so they can be added to the report or (preferably) add them directly on the guide on the Github repository (and please add yourself as an author of the report). The draft version of this report may be found on the Github repository and amended there - please inform us of any changes once you are happy with them and the arXiv version of the guide will be updated.
 
-Of particular interest would be other sources of optical-model potentials (if you are the owner of a code to calculate optical-model potentials and would be willing to allow your code to be included within this package or linked to as a submodule then please contact Philip).
+Of particular interest would be other sources of optical-model potentials (if you are the owner of a code to calculate optical-model potentials and would be willing to allow your code to be included within this package or linked to as a submodule then please contact us).
 
 A final note of warning - we have used this code for various scenarios for experiments based at iThemba LABS using the K600 magnetic spectrometer and her ancillary detectors. If you are trying to use this code with some other experimental setup at some other place you may have to make some adjustments to the inputs or the averaging code. If you are doing this and you need help, advice or emotional support, please get in touch and we will do what we can to help.
 
@@ -57,7 +57,7 @@ Angular correlations in nuclear reactions are an important tool in helping to as
 
 To calculate the form of the decay, typically one needs to have the initial spin substate ($m$-state) distribution. This depends on the reaction and, in the present case, comes from the CHUCK3 code. Once the initial $m$-state distribution is known they can be used along with the appropriate decay amplitudes for the reaction of interest to calculate the angular correlations - this is done with the AngCor code.
 
-Finally, in many cases that are investigated with the K600, reactions performed at very forward angles including 0 degrees are used. These reactions typically result in recoiling particles at a wide range of angles, and some smearing of the angular correlation function. This smearing of the angular correlation must be properly accounted for and is done with the averaging portion of the code. This code averages the angcor outputs over the reaction region of interest, weights correctly according to the differential cross section of the initial reaction and produces an averaged (observed) angular correlation function. This averaging code has been written so that the output is in the form of a ROOT TTree, meaning that dynamic gates may be placed on the spectrometer aperture 
+Finally, in many cases that are investigated with the K600, reactions performed at very forward angles including 0 degrees are used. These reactions typically result in recoiling particles at a wide range of angles, and some smearing of the angular correlation function. This smearing of the angular correlation must be properly accounted for and is done with the averaging portion of the code. This code averages the angcor outputs over the reaction region of interest, weights correctly according to the differential cross section of the initial reaction and produces an averaged (i.e. observed) angular correlation function. This averaging code has been written so that the output is in the form of a ROOT TTree, meaning that dynamic gates may be placed on the spectrometer aperture in those cases (such as with the K600) where the scattering angles may be reconstructed from the focal-plane trajectories. 
 
 Recent experimental studies which have used angular correlations of the type described within this work are:
 
@@ -92,7 +92,7 @@ which should create a sub-directory called \textquoteleft AngCorPackage\textquot
 
 \section{Optical-model potentials}
 
-Optical-model potentials are not part of this package. As a hint - if you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald (Physical Review C 36 1312). Other optical-model potentials are available. The \href{https://www-nds.iaea.org/RIPL-3/}{RIPL-3 database} is another useful source. At RCNP for $(\alpha,\alpha^\prime)$ reactions a double-folding potential is often used but that code is not included in the present package.
+Optical-model potentials are not part of this package. If you are looking at $\alpha$-particle inelastic scattering then consider using Nolte, Machner and Bojowald (Physical Review C 36 1312) \cite{dummy}. The \href{https://www-nds.iaea.org/RIPL-3/}{RIPL-3 database} is another useful source. At RCNP for $(\alpha,\alpha^\prime)$ reactions a double-folding potential is often used (see e.g. Refs. \cite{dummy}) but that code is not included in the present package.
 
 \section{Form Factors}
 
@@ -116,7 +116,7 @@ An example input is:
 .1\\
 ex\\
 
-An approximate translation of that input is:
+A translation of that input is:
 \newline
 
 \noindent pr - Proceed with the calculation\\
@@ -129,18 +129,18 @@ An approximate translation of that input is:
 .1 - Integration step size\\
 ex - exit the code\\
 
-It is generally easier to prepare these files beforehand: it is more convinient to use the code in this manner and it is useful to have the old input files available if you are trying to remember what you did some months previously.
+It is generally easier to prepare these files beforehand: it is more convinient to use the code in this manner and it is useful to have the old input files available if you are trying to remember what you did some time previously.
 
 
 \section{CHUCK3}
 
-CHUCK3 is a coupled-channel direct reaction written by Peter Kunz and modified by JR Comfort. CHUCK3 is a coupled-channel code to perform DWBA calculations. Its purpose in the current calculations is twofold. First, it is used to calculate the differential cross section as a function of scattering angle and second, it is used to obtain the substate distribution which is required for AngCor. To do this, a CHUCK3 input file must be prepared. Be careful - these input files are read in with FORTRAN and are thus sensitive to whitespaces and which column quantities are aligned to. It is therefore often much easier to take an existing file and modify it rather than writing one from scratch.
+CHUCK3 is a coupled-channel direct reaction written by Peter Kunz and modified by JR Comfort. CHUCK3 is a coupled-channel code to perform DWBA calculations. Its purpose in the current calculations is twofold. First, it is used to calculate the differential cross section as a function of scattering angle and second, it is used to obtain the substate distribution which is required for AngCor. To do this, a CHUCK3 input file must be prepared. Be careful - these input files are read in with FORTRAN and are thus sensitive to whitespaces and to which column quantities are aligned. It is therefore often much easier to take an existing file and modify it rather than writing one from scratch.
 
 The first step for using CHUCK3 is to compile the code. This should be done by entering the {\it chuck} directory and running the command {\it make}. This should create a {\it chuck} executable.
 
 CHUCK3 is detailed in the instruction manual in the {\it chuck} directory. Note that the version of CHUCK3 in the present case is a modified version of the CHUCK3 code and differs from Kunz's original CHUCK3.
 
-An annotated input is given below - however, please do not try to use it to make an input yourself because \LaTeX\ has likely modified the formatting enough that this will not work. Instead, use the example inputs in {\it chuck/input} as templates. However, a brief note about the form factors - the code {\it formf} gives monopole and dipole form factors. For higher-order cases, one can describe the form-factor in a variety of fashions. However, for the purposes of AngCor it is possible to just use a form factor of one of the reaction potentials.
+An annotated input is given below - however, please do not try to use it to make an input yourself because \LaTeX\ has modified the formatting enough that this will not work. Instead, use the example inputs in {\it chuck/input} as templates.
 
 An example CHUCK3 input is followed by a line-by-line description:
 
@@ -162,25 +162,25 @@ An example CHUCK3 input is followed by a line-by-line description:
             
 \noindent 110000023000     1    Ca48  136 MeV      ISGDR Excitation\\
 123456789 - these numbers are here to help you line up the ICON values
-Options and title for the file. The options are called ICON in the list. In this case, the options are ICON(1)=1 [read additional cards for this run], ICON(2)=1 [according to CHUCK3 documentation this is not used but the modified CHUCK3 code says that this suppresses the printing of form factors if desired], ICON(3-7) are blank or 0\footnote{In order to show the ICON values more clearly, 0s have been added for each blank.}, ICON(8)=2 [Print out scattering amplitudes], ICON(9)=3 [Print out 3-cycle semilog plot of the differential cross section], ICON(10-12)=0 [Don't use relativistic kinematics and turn off a couple of printing options]. \\ \\
+Options and title for the file. The options are called ICON in the list. In this case, the options are ICON(1)=1 [read additional cards for this run], ICON(2)=1 [according to CHUCK3 documentation this is not used but the modified CHUCK3 code says that this suppresses the printing of form factors if desired], ICON(3-7) are blank or 0\footnote{In order to show the ICON values more clearly, 0s have been added for each blank.}, ICON(8)=2 [Print out scattering amplitudes], ICON(9)=3 [Print out 3-cycle semilog plot of the differential cross section], ICON(10-12)=0 [Don't use relativistic kinematics and turn off a couple of printing options]. After these ICON values is a brief description of the reaction being considered.\\ \\
 
 \noindent 100.    0.0    0.15\\
 Number of angles to calculate (100), starting at $\theta_\mathrm{cm} = 0.0$ in steps of 0.15 degrees.\\
 
 \noindent 150  2  0 -2\\
-Use 150 partial waves, with 2 channels the first having $J^\pi = 0^+$ and the second having $J^\pi = 1^-$.\\
+Use 150 partial waves, with 2 channels the first (initial) having $J^\pi = 0^+$ and the second (final) having $J^\pi = 1^-$.\\
 
 \noindent 0.1     30.\\
-Integration step size (0.1 fm) and maximum radius for the integration (you shouldn't need to change these but if you're worried about it, try using smaller step sizes and larger radii and seeing if anything changes.\\
+Integration step size (0.1 fm) and maximum radius for the integration (you shouldn't need to change these but if you're worried about it, try using smaller step sizes and larger radii and see if anything changes).\\
 
 \noindent 136.    4.      2.      48.     20.     1.4\\
 Lab energy (136 MeV), the mass and charge of the projectile (4 and 2 for $^4$He), target mass and charge (48 and 20 for $^{48}$Ca) and reduced Coulomb charge radius (1.4 fm)\\
 
 \noindent 1  1\\
-This defines the channel (number 1). Why the number appears twice is not clear.\\
+This defines the channel (number 1). (Why the number appears twice is not clear to me - PA)\\
   
 \noindent -1.     -100.7  1.25    0.78            -21.4   1.57    0.62\\
-This defines an optical-model potential for the ingoing channel. The (-1) should be split into two parts: 1=a volume Woods-Saxon potential is being defined and the negative sign means that this is the final potential which will be read for this channel. -100.7 MeV, 1.25 fm and 0.78 fm are the depth, reduced radius and diffusivity of the real part of the Woods-Saxon potential, and -21.4 MeV, 1.57 fm and 0.62 fm are the equivalent parameters for the imaginary part.\\
+This defines an optical-model potential for the ingoing channel. The (-1) should be considered in two parts: 1=a volume Woods-Saxon potential is being defined and the negative sign means that this is the final potential which will be read for this channel. -100.7 MeV, 1.25 fm and 0.78 fm are the depth, reduced radius and diffusivity of the real part of the Woods-Saxon potential, and -21.4 MeV, 1.57 fm and 0.62 fm are the equivalent parameters for the imaginary part.\\
 
 \noindent -7.600  4.      2.      48.     20.     1.4\\
 The definition of the second channel. The excited state is at $E_x = 7.6$ MeV, the $\alpha$-particle and $^{48}$Ca definitions remain the same.\\
@@ -192,7 +192,7 @@ Defines the second channel.\\
 Again defines a volume Woods-Saxon potential, in this case identical to that given for channel number 1.\\
 
 \noindent -2  1  1  0  2  3  0  0 0.10\\
-This line (card) defines the coupling between the two channels. The coupling is from channel 1 to channel 2 (the final channel is given first). The coupling is only in one direction because it is a negative value (-2). The next value (1) defines the orbital angular momentum of the transfer. The next value (0) is twice the value of the spin transferred. The next value is twice the total angular momentum transfer (2). The next value (3) defines the form factor. The following three 0s say ??? and the final value of 0.10 gives the $\beta$ for the calculation. \\
+This line (card) defines the coupling between the two channels. The coupling is from channel 1 to channel 2 (the final channel is given first). The coupling is only in one direction because it is a negative value (-2). The next value (1) defines the orbital angular momentum of the transfer. The next value (0) is twice the value of the spin transferred. The next value is twice the total angular momentum transfer (2). The next value (3) defines the form factor. The following two 0s say ??? and the final value of 0.10 gives the $\beta$ for the calculation. \\
  
 \noindent 6.      222.49771.25    0.78            37.569061.570   0.62            1.00\\
 First part of the form factor definition. This is a volume form factor of the form $[V(r) + iW(r)] * r^n$. In this case, the parameters for the real and imaginary parts are 222.49771 MeV, 1.25 fm and 0.78 fm, and 37.56906 MeV, 1.570 fm and 0.62 fm respectively. The 1.00 at the end of the line is $n$, the exponent of the factor with $r$.\\
@@ -206,7 +206,7 @@ Third part of the form factor definition. This is a surface form factor with an 
 \noindent -8.     4.71157 1.25    0.78            1.28178 1.570   0.62            1.00\\
 Fourth and final (the 8 which defines the type of the form factor is negative) part of the form factor definition. This is a second-order form factor with an additional $r$ dependence.\\
 
-To run CHUCK3, one should do \mintinline{shell-session}|./chuck < input| to print the output to the screen or \mintinline{shell-session}|./chuck < input > output| to print the output to a file (called output). The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the \mintinline{shell-session}|fort.2| file, containing the population of the substates for the scattering at a particular angle.
+To run CHUCK3, one should do \mintinline{shell-session}|./chuck < input| to print the output to the screen or \mintinline{shell-session}|./chuck < input > output| to print the output to a file (called output). The output file is a long text file which prints out part of the status for the calculation. Another important file which is generated is the \mintinline{shell-session}|fort.2| file, containing the population of the substates for the scattering at a particular angle. This \mintinline{shell-session}|fort.2| file is required in order to run the AngCor calculations themselves.
 
 Please note that the cross section values are required for the averaging code and so you must use CHUCK3 in the form \mintinline{shell-session}|./chuck < input > output| when running CHUCK3 in preparation for doing averaged AngCor calculations.
 
@@ -283,6 +283,10 @@ Note that, at the moment the code does {\it \bf not} provide information on the 
 \section{Acknowledgements and Thanks}
 
 None of this work would have been possible without Muhsin Harakeh, both for providing the codes in the first place and for allowing us to put them online. Any mistakes found in this brief guide are solely the responsibility of the authors.
+
+\section{Log of modifications to the AngCor package}
+
+October 9th 2019: PA changed the calculation of the binomial coefficients in \mintinline{shell-session}|mnhlib.f| to allow the code to operate using the \mintinline{shell-session}|gfortran| compiler.
 
 \bibliography{AGuideToAngCor}
 \end{document}
