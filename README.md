@@ -64,3 +64,12 @@ Yours may differ but you could try that if you needed.
 This results in an AngCor executable which is giving reasonable results.
 
 I hope to fix the problems with AngCor and to make a version which compiles with gfortran but that's a problem which can be fixed at my leisure now that AngCor itself is working properly.
+
+
+BIG WARNING MESSAGE WAH WAH WAH SOUND A KLAXON
+
+The sort.awk code is predicated on having a certain number of characters in the file name to combine everything afterwards and it will horribly screw up unless you have the right number. You can fix it by changing the first number of the substring sizes to cut to what's needed from the filename to get the thetas and phi for the reaction.
+
+ALSO ANOTHER BIG WARNING MESSAGE
+
+To make things quicker, the averaging code is assuming that the relative phis don't matter because things are at 0 degrees and unpolarised. If you need to run with non-zero scattering and so a preferred reaction plane then hit me up and I'll let you know how to do that.
